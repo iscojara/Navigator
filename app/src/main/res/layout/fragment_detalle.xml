@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetalleFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/txtDireccion_lugar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_marginTop="90dp"
+        android:paddingVertical="10dp"
+        android:text="Metro Alfonso Ugarte" />
+    <TextView
+        android:id="@+id/txtDireccion_detalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:paddingVertical="5dp"
+        android:text="av. afonso ugarte" />
+    <ImageView
+        android:id="@+id/ImgCaptura"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_camera_alt_24"
+        android:paddingVertical="50dp"
+        android:background="@color/toolbar"
+        />
+    <Button
+        android:id="@+id/btnVisitarTienda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@color/xplora"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:text="visitar"/>
+
+
+</LinearLayout>

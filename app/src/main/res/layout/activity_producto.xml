@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProductoActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/link"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgRegresarCamaraP"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="1dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            tools:ignore="InvalidId" />
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="Punto de Ventas"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+        <ImageView
+            android:id="@+id/imgGuardar"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:paddingVertical="1dp"
+            android:src="@drawable/ic_baseline_save_24"
+            app:tint="@color/white"
+            tools:ignore="InvalidId" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtDireccion_lugar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:text="Reporte de Precios" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textAlignment="center"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Productos"
+            android:paddingVertical="10dp"
+            android:background="@color/tablas"
+            android:paddingHorizontal="10dp"
+            android:textSize="15dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="P.Costo"
+            android:paddingVertical="8dp"
+            android:layout_marginStart="3dp"
+            android:background="@color/tablas"
+            android:textSize="15dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="P. Ruta Mayor"
+            android:background="@color/tablas"
+            android:layout_marginStart="3dp"
+            android:textSize="15dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="Stock"
+            android:padding="3dp"
+            android:background="@color/tablas"
+            android:layout_marginStart="3dp"
+            android:textSize="15dp"/>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProducto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
