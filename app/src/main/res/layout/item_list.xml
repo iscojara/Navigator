@@ -19,16 +19,15 @@ android:layout_height="match_parent">
         android:layout_marginVertical="10dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <TextView
             android:id="@+id/idImagenMapa"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_marginVertical="5dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/maps" />
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/maps" />
 
         <LinearLayout
-            android:layout_width="232dp"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 

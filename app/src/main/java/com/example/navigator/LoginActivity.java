@@ -44,32 +44,33 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             private void consultar() {
-                SQLiteDatabase db = conn.getReadableDatabase();
-                //String[] parametros = {txtusu.getText().toString(),txtpass.getText().toString()};
-                //String[] campos = {Utilidades.CAMPO_NOMBRE,Utilidades.CAMPO_APELLIDOP,Utilidades.CAMPO_APELLIDOM,Utilidades.CAMPO_CORREO};
-                try {
-                    //Cursor cursor = db.query(Utilidades.TABLA_USUARIO,campos,Utilidades.CAMPO_NOMBRE+"=?",parametros,null,null,null);
-                    //cursor.moveToFirst();
-                    Cursor cursor = db.query("usuario",
-                            new String[]{"id","nombre","apellidoP","apellidoM","correo","password"}
-                            ,"nombre like '"+txtusu.getText().toString()+"' and password like '" +
-                                    ""+ txtpass.getText().toString()+"'",
-                            null,null,null,null);
-                    if (cursor.getCount()>0){
-                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("key_user",txtusu.getText().toString());
-                        cursor.close();
-                        i.putExtras(bundle);
-                        startActivity(i);
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Usuario y/0 Pass Incorrectos",Toast.LENGTH_LONG).show();
+                if(txtusu.getText().toString().isEmpty() || txtpass.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Campos vacios",Toast.LENGTH_LONG).show();
+                }else{
+                    SQLiteDatabase db = conn.getReadableDatabase();
+                    try {
+                        Cursor cursor = db.rawQuery("select "+Utilidades.CAMPO_ID+
+                                " from "+Utilidades.TABLA_USUARIO+
+                                " where "+Utilidades.CAMPO_NOMBRE+"= '"+txtusu.getText().toString()+
+                                "' and "+Utilidades.CAMPO_PASSWORD+"='"+txtpass.getText().toString()+"'",null);
+                        if (cursor.moveToFirst()){
+                            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("key_user",cursor.getInt(0));
+                            cursor.close();
+                            i.putExtras(bundle);
+                            startActivity(i);
+                            conn.close();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Usuario y/0 Pass Incorrectos",Toast.LENGTH_LONG).show();
+                            conn.close();
+                        }
+                    }catch (Exception e){
+                        Toast.makeText(getApplicationContext(),"Error en Consulta",Toast.LENGTH_LONG).show();
+                        txtusu.setText("");
+                        txtpass.setText("");
+                        txtusu.findFocus();
                     }
-                }catch (Exception e){
-                    Toast.makeText(getApplicationContext(),"Error en Consulta",Toast.LENGTH_LONG).show();
-                    txtusu.setText("");
-                    txtpass.setText("");
-                    txtusu.findFocus();
                 }
 
             }

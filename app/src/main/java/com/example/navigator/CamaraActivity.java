@@ -38,11 +38,11 @@ public class CamaraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camara);
-        Toast.makeText(getApplicationContext(),"Click sobre nombre ciudad",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Click sobre Imagen",Toast.LENGTH_LONG).show();
         btnVisitarTienda = (Button) findViewById(R.id.btnVisitarTienda);
         txtDireccion_lugar = findViewById(R.id.txtDireccion_lugar);
         imgCaptura = (ImageView) findViewById(R.id.ImgCaptura);
-        txtDireccion_lugar.setOnClickListener(new View.OnClickListener() {
+        imgCaptura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirCamara();
@@ -66,12 +66,12 @@ public class CamaraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent it = new Intent(getApplicationContext(),ProductoActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("key_id",idf);
+                bundle.putInt("key_idTienda",idf);
                 it.putExtras(bundle);
                 startActivity(it);
             }
         });
-        imgRegresar = (ImageView) findViewById(R.id.imgRegresar);
+        imgRegresar = (ImageView) findViewById(R.id.imgRegresarCamaraP);
         imgRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

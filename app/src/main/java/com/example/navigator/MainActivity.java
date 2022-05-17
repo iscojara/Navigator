@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     NavigationView navigationView;
     TextView user,correo;
+    int usuario;
     // variables para fragment
+    MainFragment mainFragment = new MainFragment();
+    Bundle bundletofragment;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     //Para Login
@@ -51,27 +54,27 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            String usuario = bundle.getString("key_user");
-            String[] parametros = {usuario};
-            String[] campos = {Utilidades.CAMPO_NOMBRE,Utilidades.CAMPO_APELLIDOP,Utilidades.CAMPO_APELLIDOM,Utilidades.CAMPO_CORREO};
+            usuario = bundle.getInt("key_user");
+            Bundle bundletofragment = new Bundle();
+            bundletofragment.putInt("key_usuariof",usuario);
+            String[] campos = {Utilidades.CAMPO_NOMBRE,",",Utilidades.CAMPO_APELLIDOP,",",Utilidades.CAMPO_APELLIDOM,",",Utilidades.CAMPO_CORREO};
             try {
                 SQLiteDatabase db = conn.getReadableDatabase();
-                Cursor cursor = db.query(Utilidades.TABLA_USUARIO,campos,Utilidades.CAMPO_NOMBRE+"=?",parametros,null,null,null);
-                cursor.moveToFirst();
-                user = (TextView) header.findViewById(R.id.headerNombre);
-                correo = (TextView) header.findViewById(R.id.headerCorreo);
-                user.setText(cursor.getString(0)+" "+cursor.getString(1)+" "+cursor.getString(2));
-                correo.setText(cursor.getString(3));
-                cursor.close();
+                Cursor cursor = db.rawQuery("select "+Utilidades.CAMPO_NOMBRE+","+
+                        Utilidades.CAMPO_APELLIDOP+","+Utilidades.CAMPO_APELLIDOM+
+                        ","+Utilidades.CAMPO_CORREO+" from "+Utilidades.TABLA_USUARIO+
+                        " where "+Utilidades.CAMPO_ID+"="+usuario,null);
+                if(cursor.moveToFirst()){
+                    user = (TextView) header.findViewById(R.id.headerNombre);
+                    correo = (TextView) header.findViewById(R.id.headerCorreo);
+                    user.setText(cursor.getString(0)+" "+cursor.getString(1)+" "+cursor.getString(2));
+                    correo.setText(cursor.getString(3));
+                    cursor.close();
+                    conn.close();
+                }
             }catch (Exception e){
-
             }
         }
-        //View header = navigationView.getHeaderView(0);
-        //user = (TextView) header.findViewById(R.id.headerNombre);
-        //user.setText("Francisco");
-        //correo = (TextView) header.findViewById(R.id.headerCorreo);
-        //correo.setText("iscojara14@gmail.com");
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -89,9 +92,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
         if(item.getItemId() == R.id.home){
+
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container,new MainFragment());
+            fragmentTransaction.replace(R.id.container,mainFragment);
+            mainFragment.setArguments(bundletofragment);
             fragmentTransaction.commit();
         }
         if(item.getItemId() == R.id.logout){

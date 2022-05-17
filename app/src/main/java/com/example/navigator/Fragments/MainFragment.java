@@ -46,10 +46,6 @@ public class MainFragment extends Fragment {
     ArrayList<Puntoventa> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ConexionSQLiteHelper conn;
-    Button btnMaps;
-    // referencias para comunicar fragments
-    Activity actividad;
-    ImageView imgMapa;
     iComunicaFragments iComunicaFragments;
     @Nullable
     @Override
@@ -62,8 +58,14 @@ public class MainFragment extends Fragment {
         recyclerViewUsuarios = (RecyclerView) view.findViewById(R.id.recyclerID);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        Bundle bundlelogueado = getArguments();
+        if(bundlelogueado!=null){
+            int idlogueado = bundlelogueado.getInt("key_usuariof");
+            Toast.makeText(getContext(),"IDLogueado:  "+idlogueado,Toast.LENGTH_LONG).show();
+        }
         llenarLista();
         ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
+
         /* Al dar click a la Iamgen mandar a maps
         Intent i = new Intent(getActivity().getApplicationContext(), UbicacionActivity.class);
         Bundle bundle = new Bundle();

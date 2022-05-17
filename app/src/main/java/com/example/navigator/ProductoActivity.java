@@ -27,11 +27,14 @@ public class ProductoActivity extends AppCompatActivity {
     RecyclerView recyclerViewProducto;
     ConexionSQLiteHelper conn;
     Button btnMaps;
+    Bundle bundle;
     ImageView imgRegresarCamaraP, imgGuardar;
+    TextView tituloProductoTienda;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto);
+        tituloProductoTienda = (TextView) findViewById(R.id.tituloProductoTienda);
         imgRegresarCamaraP = (ImageView) findViewById(R.id.imgRegresarCamaraP);
         imgRegresarCamaraP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,20 +56,29 @@ public class ProductoActivity extends AppCompatActivity {
         conn =  new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
         recyclerViewProducto = (RecyclerView) findViewById(R.id.recyclerProducto);
         recyclerViewProducto.setLayoutManager(new LinearLayoutManager(this));
-
+        bundle = getIntent().getExtras();
+        if(bundle!=null){
+            idTienda = bundle.getInt("key_idTienda");
+        }
+        buscarTienda();
         llenarLista();
         ListaProductosAdapter adapter = new ListaProductosAdapter(listaUsuario);
         recyclerViewProducto.setAdapter(adapter);
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
-            idTienda = bundle.getInt("key_id");
+
+    }
+
+    private void buscarTienda() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select "+Utilidades.CAMPO_NOMBRE_PUNTOV+" FROM "+Utilidades.TABLA_PUNTOSV+" WHERE "+Utilidades.CAMPO_IDP+"="+idTienda,null);
+        if (cursor.moveToFirst()){
+            tituloProductoTienda.setText(cursor.getString(0));
         }
     }
 
     private void llenarLista() {
         SQLiteDatabase db = conn.getReadableDatabase();
         Producto usuario = null;
-        Cursor cursor = db.rawQuery("Select * FROM producto",null);
+        Cursor cursor = db.rawQuery("Select * FROM producto WHERE "+Utilidades.CAMPO_PRODUCTOIDTIENDA+"="+idTienda,null);
         while (cursor.moveToNext()){
             usuario = new Producto();
             usuario.setId(cursor.getInt(0));

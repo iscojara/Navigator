@@ -20,12 +20,14 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
-            android:paddingVertical="1dp"
+            android:paddingVertical="5dp"
             android:src="@drawable/ic_baseline_arrow_back_24"
             tools:ignore="InvalidId" />
         <TextView
+            android:id="@+id/tituloProductoTienda"
             android:layout_width="230dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:paddingVertical="9dp"
             android:layout_marginHorizontal="10dp"
             android:text="Punto de Ventas"
             android:textAllCaps="true"
@@ -68,7 +70,8 @@
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:text="Productos"
-            android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:paddingVertical="12dp"
             android:background="@color/tablas"
             android:paddingHorizontal="10dp"
             android:textSize="15dp"/>
@@ -76,7 +79,8 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:text="P.Costo"
-            android:paddingVertical="8dp"
+            android:textAlignment="center"
+            android:paddingVertical="12dp"
             android:layout_marginStart="3dp"
             android:background="@color/tablas"
             android:textSize="15dp"/>
@@ -84,6 +88,8 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:text="P. Ruta Mayor"
+            android:textAlignment="center"
+            android:paddingVertical="5dp"
             android:background="@color/tablas"
             android:layout_marginStart="3dp"
             android:textSize="15dp"/>
@@ -91,7 +97,8 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:text="Stock"
-            android:padding="3dp"
+            android:textAlignment="center"
+            android:paddingVertical="12dp"
             android:background="@color/tablas"
             android:layout_marginStart="3dp"
             android:textSize="15dp"/>

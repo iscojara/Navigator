@@ -1,6 +1,8 @@
 package com.example.navigator.adaptadores;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigator.R;
+import com.example.navigator.UbicacionActivity;
 import com.example.navigator.entidades.Puntoventa;
 import com.example.navigator.entidades.Usuario;
 
@@ -21,9 +24,9 @@ import java.util.ArrayList;
 public class ListaPersonasAdapter extends
         RecyclerView.Adapter<ListaPersonasAdapter.PersonasViewHolder>
         implements View.OnClickListener{
-    ImageView imgMapa;
     ArrayList<Puntoventa> listaUsuario;
     private View.OnClickListener listener;
+    // obtiene el tamaño de la lista
     public ListaPersonasAdapter(ArrayList<Puntoventa> listaUsuario) {
         this.listaUsuario = listaUsuario;
     }
@@ -36,9 +39,15 @@ public class ListaPersonasAdapter extends
 
     @Override
     public void onBindViewHolder(PersonasViewHolder holder, int position) {
-        holder.documento.setText(listaUsuario.get(position).getId().toString());
-        holder.nombre.setText(listaUsuario.get(position).getNombre());
-        holder.telefono.setText(listaUsuario.get(position).getDireccion());
+        holder.lugar.setText(listaUsuario.get(position).getNombre());
+        holder.direccion.setText(listaUsuario.get(position).getDireccion());
+        //holder.imgMapa.setText(listaUsuario.get(position).getId().toString());
+        holder.imgMapa.setOnClickListener(new View.OnClickListener()  {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(),"mandar foto: ",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -56,14 +65,12 @@ public class ListaPersonasAdapter extends
     }
 
     public class PersonasViewHolder extends RecyclerView.ViewHolder {
-        TextView documento,nombre,telefono;
+        TextView imgMapa,lugar,direccion;
         public PersonasViewHolder(View itemView) {
             super(itemView);
-            documento = (TextView) itemView.findViewById(R.id.idNombre);
-            nombre = (TextView) itemView.findViewById(R.id.idNombre);
-            telefono = (TextView) itemView.findViewById(R.id.idInfo);
-            imgMapa = (ImageView) itemView.findViewById(R.id.idImagenMapa);
-
+            lugar = (TextView) itemView.findViewById(R.id.idNombre);
+            direccion = (TextView) itemView.findViewById(R.id.idInfo);
+            imgMapa = (TextView) itemView.findViewById(R.id.idImagenMapa);
         }
     }
 }
