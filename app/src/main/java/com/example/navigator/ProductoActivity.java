@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import com.example.navigator.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
-public class ProductoActivity extends AppCompatActivity {
+public class ProductoActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     int idTienda;
     ArrayList<Producto> listaProducto;
@@ -31,6 +32,8 @@ public class ProductoActivity extends AppCompatActivity {
     Bundle bundle;
     ImageView imgRegresarCamaraP, imgGuardar;
     TextView tituloProductoTienda;
+    SearchView buscadorProductos;
+    ListaProductosAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class ProductoActivity extends AppCompatActivity {
 
         tituloProductoTienda = (TextView) findViewById(R.id.tituloProductoTienda);
         imgRegresarCamaraP = (ImageView) findViewById(R.id.imgRegresarCamaraP);
+        buscadorProductos = (SearchView)findViewById(R.id.buscadorProductos);
         //funcion de botones
         imgRegresarCamaraP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +74,10 @@ public class ProductoActivity extends AppCompatActivity {
         buscarTienda();
         llenarLista();
 
-        ListaProductosAdapter adapter = new ListaProductosAdapter(listaProducto);
+        adapter = new ListaProductosAdapter(listaProducto);
         recyclerViewProducto.setAdapter(adapter);
+        // para buscar producto
+        buscadorProductos.setOnQueryTextListener(this);
 
 
     }
@@ -102,5 +108,16 @@ public class ProductoActivity extends AppCompatActivity {
             usuario.setIdTienda(cursor.getInt(5));
             listaProducto.add(usuario);
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        adapter.filtrado(newText);
+        return false;
     }
 }

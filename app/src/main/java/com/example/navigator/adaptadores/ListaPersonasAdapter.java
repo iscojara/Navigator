@@ -20,17 +20,22 @@ import com.example.navigator.entidades.Puntoventa;
 import com.example.navigator.entidades.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ListaPersonasAdapter extends
         RecyclerView.Adapter<ListaPersonasAdapter.PersonasViewHolder>
         implements View.OnClickListener{
     ArrayList<Puntoventa> listaUsuario;
+    ArrayList<Puntoventa> listaOriginal;
     private View.OnClickListener listener;
     Context context;
     // constructor
     public ListaPersonasAdapter(ArrayList<Puntoventa> listaUsuario, Context context) {
         this.listaUsuario = listaUsuario;
+        listaOriginal = new ArrayList<>();
+        listaOriginal.addAll(listaUsuario);
         this.context =context;
     }
     @Override
@@ -72,6 +77,28 @@ public class ListaPersonasAdapter extends
         if(listener!=null){
             listener.onClick(v);
         }
+    }
+    public void filtrado(final String txtBuscar) {
+        int longitud = txtBuscar.length();
+        if (longitud == 0) {
+            listaUsuario.clear();
+            listaUsuario.addAll(listaOriginal);
+        } else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<Puntoventa> collecion = listaUsuario.stream()
+                        .filter(i -> i.getNombre().toLowerCase().contains(txtBuscar.toLowerCase()))
+                        .collect(Collectors.toList());
+                listaUsuario.clear();
+                listaUsuario.addAll(collecion);
+            } else {
+                for (Puntoventa c : listaOriginal) {
+                    if (c.getNombre().toLowerCase().contains(txtBuscar.toLowerCase())) {
+                        listaUsuario.add(c);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public class PersonasViewHolder extends RecyclerView.ViewHolder {

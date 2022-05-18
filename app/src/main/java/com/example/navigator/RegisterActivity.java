@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +22,12 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        btnGrabar = (Button) findViewById(R.id.btnRegister);
-        txtnom = (EditText) findViewById(R.id.txtEnombre);
-        txtaP = (EditText) findViewById(R.id.txtEaP);
-        txtaM = (EditText) findViewById(R.id.txtEaM);
-        txtcorreo = (EditText) findViewById(R.id.txtECorreo);
-        txtpass = (EditText) findViewById(R.id.txtEPass);
+        btnGrabar = (Button) findViewById(R.id.RegisterUsuario);
+        txtnom = (EditText) findViewById(R.id.txtNombreURegister);
+        txtaP = (EditText) findViewById(R.id.txtApellidoPR);
+        txtaM = (EditText) findViewById(R.id.txtApellidoMR);
+        txtcorreo = (EditText) findViewById(R.id.txtCorreoR);
+        txtpass = (EditText) findViewById(R.id.txtPasswordR);
         btnGrabar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

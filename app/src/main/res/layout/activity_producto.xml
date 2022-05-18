@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtDireccion_lugar"
+        android:id="@+id/imagenGuardarFinal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"

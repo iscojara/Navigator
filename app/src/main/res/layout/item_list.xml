@@ -51,6 +51,7 @@ android:layout_height="match_parent">
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="10dp"
                 android:textSize="12dp"
+                android:textAllCaps="true"
                 android:text="Av. Afonso Ugarte 740 " />
 
         </LinearLayout>

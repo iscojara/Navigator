@@ -47,8 +47,6 @@ public class CamaraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 abrirCamara();
             }
-
-
         });
 
         bundle = getIntent().getExtras();

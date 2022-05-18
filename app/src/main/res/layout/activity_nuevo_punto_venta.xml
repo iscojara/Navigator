@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NuevoPuntoVentaActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/link"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgRegresarDeRegistroToPrincipal"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            tools:ignore="InvalidId" />
+
+        <TextView
+            android:id="@+id/tituloNuevoPuntoVReforze"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="9dp"
+            android:text="Registro PDV"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnRegisterPuntoV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/link"
+        android:text="Registrar Punto de Venta"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/txtLongitudePuntoV"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <TextView
+        android:id="@+id/lblPuntoVTitulado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Nuevo Punto Venta"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <EditText
+        android:id="@+id/txtNombrePuntoV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_rectangle"
+        android:ems="10"
+        android:hint="Ingrese Nombre PDV"
+        android:inputType="textPersonName"
+        android:paddingVertical="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/imgGoogleMapsPunto"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <EditText
+        android:id="@+id/txtDireccionPuntoV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_rectangle"
+        android:ems="10"
+        android:hint="Ingrese Direccion de PDV"
+        android:inputType="textPersonName"
+        android:paddingVertical="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombrePuntoV"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <EditText
+        android:id="@+id/txtCodigoPuntoV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_rectangle"
+        android:ems="10"
+        android:hint="Ingrese Codigo PDV"
+        android:inputType="number"
+        android:paddingVertical="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccionPuntoV"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <EditText
+        android:id="@+id/txtLatitudePuntoV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_rectangle"
+        android:ems="10"
+        android:hint="Ingrese Latitude PDV"
+        android:inputType="number"
+        android:digits="0123456789-."
+        android:paddingVertical="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodigoPuntoV"
+        tools:layout_editor_absoluteX="49dp" />
+
+    <EditText
+        android:id="@+id/txtLongitudePuntoV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_rectangle"
+        android:ems="10"
+        android:hint="Ingrese Longitude PDV"
+        android:inputType="number"
+        android:digits="0123456789-."
+        android:paddingVertical="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/txtLatitudePuntoV"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <ImageView
+        android:id="@+id/imgGoogleMapsPunto"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPuntoVTitulado"
+        app:srcCompat="@drawable/maps" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

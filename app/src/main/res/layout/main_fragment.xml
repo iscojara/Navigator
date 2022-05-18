@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -9,46 +10,48 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textSize="30dp"
         android:text=""
         android:layout_marginBottom="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="80dp">
+
         <SearchView
             android:id="@+id/buscadorPuntoVenta"
             android:layout_width="match_parent"
-            android:paddingHorizontal="40dp"
-            android:background="@drawable/shape_rectangle"
-            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
-            android:layout_height="wrap_content" />
+            android:background="@drawable/shape_rectangle"
+            android:paddingHorizontal="40dp" />
     </LinearLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerID"
-        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="150dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingAgregarNuevoPuntoV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/xplora"
+        android:clickable="true"
+        app:borderWidth="0dp"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="300dp"
-            android:backgroundTint="@color/xplora"
-            android:clickable="true"
-            app:borderWidth="0dp"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

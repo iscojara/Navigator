@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import com.example.navigator.CamaraActivity;
 import com.example.navigator.ConexionSQLiteHelper;
 import com.example.navigator.MainActivity;
 import com.example.navigator.MapsFragment;
+import com.example.navigator.NuevoPuntoVentaActivity;
 import com.example.navigator.R;
 import com.example.navigator.UbicacionActivity;
 import com.example.navigator.adaptadores.ListaPersonasAdapter;
@@ -38,15 +40,19 @@ import com.example.navigator.entidades.Puntoventa;
 import com.example.navigator.entidades.Usuario;
 import com.example.navigator.iComunicaFragments;
 import com.example.navigator.utilidades.Utilidades;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements SearchView.OnQueryTextListener{
     ArrayList<Puntoventa> listaUsuario;
     RecyclerView recyclerViewUsuarios;
     ConexionSQLiteHelper conn;
     iComunicaFragments iComunicaFragments;
+    SearchView buscadorPuntoVenta;
+    FloatingActionButton floatingAgregarNuevoPuntoV;
+    ListaPersonasAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,14 +63,22 @@ public class MainFragment extends Fragment {
         conn =  new ConexionSQLiteHelper(getContext(),"bd_usuarios",null,1);
         recyclerViewUsuarios = (RecyclerView) view.findViewById(R.id.recyclerID);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        buscadorPuntoVenta = view.findViewById(R.id.buscadorPuntoVenta);
+        floatingAgregarNuevoPuntoV = (FloatingActionButton) view.findViewById(R.id.floatingAgregarNuevoPuntoV);
+        floatingAgregarNuevoPuntoV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), NuevoPuntoVentaActivity.class);
+                startActivity(i);
+            }
+        });
         Bundle bundlelogueado = getArguments();
         if(bundlelogueado!=null){
             int idlogueado = bundlelogueado.getInt("key_usuariof");
             Toast.makeText(getContext(),"IDLogueado:  "+idlogueado,Toast.LENGTH_LONG).show();
         }
         llenarLista();
-        ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario,getActivity());
+        adapter = new ListaPersonasAdapter(listaUsuario,getActivity());
 
         /* Al dar click a la Iamgen mandar a maps
         Intent i = new Intent(getActivity().getApplicationContext(), UbicacionActivity.class);
@@ -101,6 +115,7 @@ public class MainFragment extends Fragment {
             }
         });
         recyclerViewUsuarios.setAdapter(adapter);
+        buscadorPuntoVenta.setOnQueryTextListener(this);
         return view;
     }
 
@@ -118,5 +133,16 @@ public class MainFragment extends Fragment {
             usuario.setLongitude(cursor.getDouble(5));
             listaUsuario.add(usuario);
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        adapter.filtrado(newText);
+        return false;
     }
 }
