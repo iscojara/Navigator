@@ -64,7 +64,7 @@ public class MainFragment extends Fragment {
             Toast.makeText(getContext(),"IDLogueado:  "+idlogueado,Toast.LENGTH_LONG).show();
         }
         llenarLista();
-        ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario);
+        ListaPersonasAdapter adapter = new ListaPersonasAdapter(listaUsuario,getActivity());
 
         /* Al dar click a la Iamgen mandar a maps
         Intent i = new Intent(getActivity().getApplicationContext(), UbicacionActivity.class);

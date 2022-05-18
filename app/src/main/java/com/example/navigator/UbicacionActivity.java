@@ -65,6 +65,6 @@ public class UbicacionActivity extends FragmentActivity
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(latitude, longitude);
         googleMap.addMarker(new MarkerOptions().position(sydney).title("Ubicación Tienda"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,15));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18));
     }
 }

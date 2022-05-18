@@ -16,6 +16,7 @@
         android:text="Productos"
         android:textAlignment="center"
         android:paddingVertical="10dp"
+        android:textColor="@color/black"
         android:background="@color/celdas"
         android:paddingHorizontal="10dp"
         android:textSize="15dp"/>
@@ -27,6 +28,7 @@
         android:inputType="number"
         android:textAlignment="center"
         android:paddingVertical="8dp"
+        android:textColor="@color/link"
         android:layout_marginStart="3dp"
         android:background="@color/celdas"
         android:textSize="15dp"/>
@@ -36,6 +38,7 @@
         android:layout_height="match_parent"
         android:text="P. Ruta Mayor"
         android:inputType="number"
+        android:textColor="@color/link"
         android:textAlignment="center"
         android:background="@color/celdas"
         android:layout_marginStart="3dp"
@@ -46,6 +49,7 @@
         android:layout_height="match_parent"
         android:text="Stock"
         android:padding="3dp"
+        android:textColor="@color/link"
         android:inputType="number"
         android:textAlignment="center"
         android:background="@color/celdas"

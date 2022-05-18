@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.navigator.adaptadores.ListaPersonasAdapter;
 import com.example.navigator.adaptadores.ListaProductosAdapter;
@@ -22,20 +23,23 @@ import com.example.navigator.utilidades.Utilidades;
 import java.util.ArrayList;
 
 public class ProductoActivity extends AppCompatActivity {
+
     int idTienda;
-    ArrayList<Producto> listaUsuario;
+    ArrayList<Producto> listaProducto;
     RecyclerView recyclerViewProducto;
     ConexionSQLiteHelper conn;
-    Button btnMaps;
     Bundle bundle;
     ImageView imgRegresarCamaraP, imgGuardar;
     TextView tituloProductoTienda;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto);
+
         tituloProductoTienda = (TextView) findViewById(R.id.tituloProductoTienda);
         imgRegresarCamaraP = (ImageView) findViewById(R.id.imgRegresarCamaraP);
+        //funcion de botones
         imgRegresarCamaraP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,26 +51,35 @@ public class ProductoActivity extends AppCompatActivity {
         imgGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                guardarProductos();
                 Intent it = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(it);
                 finish();
             }
         });
-        listaUsuario = new ArrayList<>();
+        // recycler View
+        listaProducto = new ArrayList<>();
         conn =  new ConexionSQLiteHelper(this,"bd_usuarios",null,1);
         recyclerViewProducto = (RecyclerView) findViewById(R.id.recyclerProducto);
         recyclerViewProducto.setLayoutManager(new LinearLayoutManager(this));
+
         bundle = getIntent().getExtras();
         if(bundle!=null){
             idTienda = bundle.getInt("key_idTienda");
         }
         buscarTienda();
         llenarLista();
-        ListaProductosAdapter adapter = new ListaProductosAdapter(listaUsuario);
+
+        ListaProductosAdapter adapter = new ListaProductosAdapter(listaProducto);
         recyclerViewProducto.setAdapter(adapter);
 
-    }
 
+    }
+    private void guardarProductos() {
+        //SQLiteDatabase db = conn.getReadableDatabase();
+        Toast.makeText(getApplicationContext(),"Guardado con Exito",Toast.LENGTH_LONG).show();
+
+    }
     private void buscarTienda() {
         SQLiteDatabase db = conn.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select "+Utilidades.CAMPO_NOMBRE_PUNTOV+" FROM "+Utilidades.TABLA_PUNTOSV+" WHERE "+Utilidades.CAMPO_IDP+"="+idTienda,null);
@@ -87,7 +100,7 @@ public class ProductoActivity extends AppCompatActivity {
             usuario.setPruta(cursor.getDouble(3));
             usuario.setStock(cursor.getInt(4));
             usuario.setIdTienda(cursor.getInt(5));
-            listaUsuario.add(usuario);
+            listaProducto.add(usuario);
         }
     }
 }

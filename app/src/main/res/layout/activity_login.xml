@@ -19,18 +19,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <Button
         android:id="@+id/btnIngresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="100dp"
+        android:layout_marginHorizontal="80dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/xplora"
         android:text="@string/login_buttonI"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/white"
+        android:background="@drawable/shape_rectangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginClave" />
 
@@ -42,6 +44,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/shape_rectangle"
         android:ems="10"
+        android:textColorHint="@color/link"
         android:hint="@string/login_input1"
         android:inputType="textPersonName"
         android:paddingVertical="8dp"
@@ -61,6 +64,7 @@
         android:ems="10"
         android:hint="@string/login_input2"
         android:inputType="textPassword"
+        android:textColorHint="@color/link"
         android:paddingVertical="8dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,6 +118,7 @@
         android:textAlignment="center"
         android:textColor="@color/link"
         android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

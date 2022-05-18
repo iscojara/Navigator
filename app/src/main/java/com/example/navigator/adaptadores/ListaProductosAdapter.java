@@ -18,11 +18,10 @@ import java.util.ArrayList;
 public class ListaProductosAdapter extends
         RecyclerView.Adapter<ListaProductosAdapter.ProductosViewHolder>
         implements View.OnClickListener{
-    ImageView imgMapa;
-    ArrayList<Producto> listaUsuario;
+    ArrayList<Producto> listaProducto;
     private View.OnClickListener listener;
-    public ListaProductosAdapter(ArrayList<Producto> listaUsuario) {
-        this.listaUsuario = listaUsuario;
+    public ListaProductosAdapter(ArrayList<Producto> listaProducto) {
+        this.listaProducto = listaProducto;
     }
     @Override
     public ProductosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -33,15 +32,15 @@ public class ListaProductosAdapter extends
 
     @Override
     public void onBindViewHolder(ProductosViewHolder holder, int position) {
-        holder.documento.setText(listaUsuario.get(position).getNombre());
-        holder.nombre.setText(listaUsuario.get(position).getPrecio().toString());
-        holder.telefono.setText(listaUsuario.get(position).getPruta().toString());
-        holder.stock.setText(listaUsuario.get(position).getStock().toString());
+        holder.nombre.setText(listaProducto.get(position).getNombre());
+        holder.precio.setText(listaProducto.get(position).getPrecio().toString());
+        holder.pruta.setText(listaProducto.get(position).getPruta().toString());
+        holder.stock.setText(listaProducto.get(position).getStock().toString());
     }
 
     @Override
     public int getItemCount() {
-        return listaUsuario.size();
+        return listaProducto.size();
     }
     public void setOnClickListener(View.OnClickListener listener){
         this.listener=listener;
@@ -54,16 +53,13 @@ public class ListaProductosAdapter extends
     }
 
     public class ProductosViewHolder extends RecyclerView.ViewHolder {
-
-        TextView documento,nombre,telefono,stock;
+        TextView nombre,precio,pruta,stock;
         public ProductosViewHolder(View itemView) {
             super(itemView);
-
-            documento = (TextView) itemView.findViewById(R.id.ProductoID);
-            nombre = (TextView) itemView.findViewById(R.id.ProductoCosto);
-            telefono = (TextView) itemView.findViewById(R.id.ProductoRuta);
+            nombre = (TextView) itemView.findViewById(R.id.ProductoID);
+            precio = (TextView) itemView.findViewById(R.id.ProductoCosto);
+            pruta = (TextView) itemView.findViewById(R.id.ProductoRuta);
             stock = (TextView) itemView.findViewById(R.id.ProductoStock);
-
         }
     }
 }

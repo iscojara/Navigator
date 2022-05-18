@@ -1,6 +1,7 @@
 package com.example.navigator.adaptadores;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,9 +27,11 @@ public class ListaPersonasAdapter extends
         implements View.OnClickListener{
     ArrayList<Puntoventa> listaUsuario;
     private View.OnClickListener listener;
-    // obtiene el tamaño de la lista
-    public ListaPersonasAdapter(ArrayList<Puntoventa> listaUsuario) {
+    Context context;
+    // constructor
+    public ListaPersonasAdapter(ArrayList<Puntoventa> listaUsuario, Context context) {
         this.listaUsuario = listaUsuario;
+        this.context =context;
     }
     @Override
     public PersonasViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,14 +41,21 @@ public class ListaPersonasAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(PersonasViewHolder holder, int position) {
+    public void onBindViewHolder(PersonasViewHolder holder,final int position) {
         holder.lugar.setText(listaUsuario.get(position).getNombre());
         holder.direccion.setText(listaUsuario.get(position).getDireccion());
         //holder.imgMapa.setText(listaUsuario.get(position).getId().toString());
+        final Puntoventa punto = listaUsuario.get(position);
         holder.imgMapa.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),"mandar foto: ",Toast.LENGTH_LONG).show();
+                //Toast.makeText(v.getContext(),"mandar foto: "+punto.getNombre(),Toast.LENGTH_LONG).show();
+                Intent i = new Intent(v.getContext(), UbicacionActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putDouble("key_latitude",punto.getLatitude());
+                bundle.putDouble("key_longitude",punto.getLongitude());
+                i.putExtras(bundle);
+                context.startActivity(i);
             }
         });
     }
